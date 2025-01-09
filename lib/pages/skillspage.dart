@@ -6,9 +6,8 @@ class SkillsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
-      mobile: SkillsMob(),
       desktop: SkillsDesk(),
-      tablet: SkillsTab(),    
+      tablet: SkillsTab(),
     );
   }
 }

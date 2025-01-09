@@ -2,13 +2,9 @@ import 'package:DeveloperFolio/include/Rows/achievementsmain.dart';
 import 'package:DeveloperFolio/include/Rows/contactpagemain.dart';
 import 'package:DeveloperFolio/include/imagesmain/images.dart';
 import 'package:DeveloperFolio/include/skillspage/skills_desk.dart';
-import 'package:DeveloperFolio/include/Rows/progressbarmain.dart';
 import 'package:DeveloperFolio/include/Rows/skillslogosmain.dart';
 import 'package:DeveloperFolio/include/Rows/welcomepagemain.dart';
-import 'package:DeveloperFolio/pages/blogpage.dart';
 import 'package:DeveloperFolio/pages/contactpage.dart';
-import 'package:DeveloperFolio/pages/footer.dart';
-import 'package:DeveloperFolio/pages/progresspage.dart';
 import 'package:DeveloperFolio/pages/welcome.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +16,7 @@ class HomeDesktop extends StatefulWidget {
 }
 
 class _HomeDesktopState extends State<HomeDesktop> {
-  var _controller = ScrollController();
+  var _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -34,44 +30,41 @@ class _HomeDesktopState extends State<HomeDesktop> {
     super.dispose();
   }
 
+  void goTo(double position) {
+    _scrollController.animateTo(
+      position,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOutQuart,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scrollbar(
-        controller: _controller,
         child: SingleChildScrollView(
+          controller: _scrollController,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Flexible(
-                          child: ListView(
+                child: ListView(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-
                   children: [
-                     
                     Row(
                       children: <Widget>[
-                        Expanded(child: WelcomePage()),
+                        Expanded(child: WelcomePage(goTo)),
                         Expanded(child: OneDesk()),
                       ],
                     ),
                     SizedBox(
-                      height: 75,
+                      height: 45,
                     ),
                     Row(
                       children: <Widget>[
                         Expanded(child: TwoDesk()),
-                        Expanded(child: SkillsLogoDesk()),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 75,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Expanded(child: SkillBarDesk()),
-                        Expanded(child: ThreeDesk()),
+                        Expanded(child: SkillsLogo()),
                       ],
                     ),
                     SizedBox(
@@ -82,30 +75,19 @@ class _HomeDesktopState extends State<HomeDesktop> {
                         Expanded(child: AchieveDesk()),
                       ],
                     ),
-                     SizedBox(
+                    SizedBox(
                       height: 75,
                     ),
                     Row(
                       children: [
-                        Expanded(child: BlogPage()),
+                        Expanded(
+                          child: ContactPageGeneric(),
+                        ),
+                        Expanded(
+                          child: FourDesk(),
+                        ),
                       ],
-                    ),
-                     SizedBox(
-                      height: 75,
-                    ),
-                     Row(
-                      children: [
-                        Expanded(child: ContactPageDesk(),),
-                        Expanded(child: FourDesk(),),
-                      ],
-                    ),
-                    SizedBox(height: 100,),
-                    Row(
-                      children: [
-                        Expanded(child: FooterPage()),
-                      ],
-                    ),
-                    
+                    )
                   ],
                 ),
               ),
@@ -117,59 +99,40 @@ class _HomeDesktopState extends State<HomeDesktop> {
   }
 }
 
-class HomeMobile extends StatelessWidget {
+class HomeTab extends StatefulWidget {
+  @override
+  _HomeTabState createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  var _scrollController = ScrollController();
+
+  void goTo(double position) {
+    _scrollController.animateTo(
+      position,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOutQuart,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      controller: _scrollController,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Flexible(
-                  child: ListView(
+            child: ListView(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               children: <Widget>[
-                WelcomePageMob(),
-                OneMob(),
-                SkillsMob(),
-                ProgressPage(),
-                AchieveMob(),
-                BlogPage(),
-                ContactPage(),
-                SizedBox(height: 50,),
-                FooterPage()
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class HomeTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Flexible(
-                  child: ListView(   
-                    shrinkWrap: true,     
-                    physics: NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                WelcomePageTab(),
+                WelcomePageTab(goTo),
                 OneTab(),
                 SkillsTab(),
-                ProgressPage(),
                 AchieveTab(),
-                BlogPage(),
                 ContactPage(),
-                SizedBox(height: 50,),
-                FooterMob(),
               ],
             ),
           ),

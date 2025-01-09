@@ -8,7 +8,6 @@ class AchievementsPage extends StatelessWidget {
     return ScreenTypeLayout(
       desktop: AchieveDesk(),
       tablet: AchieveTab(),
-      mobile: AchieveMob(),      
     );
   }
 }

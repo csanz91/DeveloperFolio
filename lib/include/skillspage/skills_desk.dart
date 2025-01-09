@@ -10,7 +10,7 @@ class SkillsDesk extends StatelessWidget {
           child: Row(
          children: <Widget>[
             TwoDesk(),
-            SkillsLogoDesk(),
+            SkillsLogo(),
                   ],
       ),
     );
@@ -26,7 +26,7 @@ class SkillsMob extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SkillsLogoMob(),
+          SkillsLogo(),
          TwoMob(),
         ],      
       ),
@@ -43,7 +43,7 @@ class SkillsTab extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SkillsLogoTab(),
+          SkillsLogo(),
           TwoTab(),
         ],      
       ),

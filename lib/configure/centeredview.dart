@@ -9,7 +9,6 @@ class CenteredView extends StatelessWidget {
     return ScreenTypeLayout(
       desktop: CenteredViewDesk(),
       tablet: CenteredViewTab(),
-      mobile: CenteredViewMob(),
     );
   }
 }
